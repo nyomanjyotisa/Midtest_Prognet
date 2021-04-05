@@ -11,4 +11,9 @@ class TransactionController extends Controller
         $transactions = Transaction::all();
         return view('transaction', ['transactions' => $transactions]);
     }
+
+    public function delete ($id){
+        Transaction::where('id', $id)->delete();
+        return redirect ('/transaction');
+    }
 }

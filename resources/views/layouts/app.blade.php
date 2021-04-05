@@ -13,6 +13,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('template/js/select.dataTables.min.css') }} ">
   <link rel="stylesheet" href="{{ asset('template/css/vertical-layout-light/style.css') }} ">
   <link rel="shortcut icon" href="{{ asset('template/images/favicon.png') }} " />
+  @yield('style')
 </head>
 <body>
   <div class="container-scroller"> 

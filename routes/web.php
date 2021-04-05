@@ -18,6 +18,11 @@ Route::get('/', function () {
 });
 Route::view('/dashboard', 'dashboard');
 Route::get('/transaction', 'TransactionController@index');
-Route::view('/payment', 'payment');
+Route::get('/transaction/delete/{id}', 'TransactionController@delete');
+Route::get('/payment', 'PaymentController@index');
+Route::get('/payment/delete/{id}', 'PaymentController@delete');
 Route::get('/rooms', 'RoomController@index');
+Route::get('/rooms/delete/{id}', 'RoomController@delete');
 Route::get('/customers', 'CustomerController@index');
+Route::post('/customers/new', 'CustomerController@new');
+Route::get('/customers/delete/{id}', 'CustomerController@delete');
