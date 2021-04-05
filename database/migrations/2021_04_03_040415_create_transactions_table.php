@@ -23,7 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
 
             $table->integer('duration_month');
-            $table->timestamp('start_date');
+            $table->date('start_date');
             $table->integer('total_fee');
             $table->enum('payment_status', ['paid', 'partially paid', 'not_paid']);
             $table->timestamps();

@@ -36,4 +36,27 @@ class TransactionController extends Controller
         Transaction::where('id', $id)->delete();
         return redirect ('/transaction');
     }
+
+    public function edit($id){
+        $transaction = Transaction::find($id);
+        $rooms = Room::all();
+        $customers = Customer::all();
+
+        return view('transactionEdit',['transaction' =>$transaction, 'rooms' => $rooms, 'customers' => $customers]);
+    }
+
+    public function update(Request $request, $id){
+        $transaction = Transaction::find($id);
+
+        $room = Room::with('room_types')->find($request->room);
+
+        $transaction->room_id = $request->room;
+        $transaction->customer_id = $request->customer;
+        $transaction->duration_month = $request->duration;
+        $transaction->start_date = $request->tanggalmulai;
+        $transaction->total_fee = $request->duration*$room->room_types->monthly_fee;
+        $transaction->save();
+
+        return redirect ('/transaction');
+    }
 }

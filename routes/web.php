@@ -18,22 +18,34 @@ Route::get('/', function () {
 });
 Route::view('/dashboard', 'dashboard');
 
+Route::prefix('transaction')->group(function(){
+    Route::get('/', 'TransactionController@index');
+    Route::post('/new', 'TransactionController@new');
+    Route::get('/delete/{id}', 'TransactionController@delete');
+    Route::get('/edit/{id}', 'TransactionController@edit');
+    Route::post('/update/{id}', 'TransactionController@update');
+});
 
-Route::get('/transaction', 'TransactionController@index');
-Route::post('/transaction/new', 'TransactionController@new');
-Route::get('/transaction/delete/{id}', 'TransactionController@delete');
+Route::prefix('payment')->group(function(){
+    Route::get('/', 'PaymentController@index');
+    Route::get('/delete/{id}', 'PaymentController@delete');
+    Route::post('/new', 'PaymentController@new');
+    Route::get('/edit/{id}', 'PaymentController@edit');
+    Route::post('/update/{id}', 'PaymentController@update');
+});
 
+Route::prefix('rooms')->group(function(){
+    Route::get('/', 'RoomController@index');
+    Route::post('/new', 'RoomController@new');
+    Route::get('/delete/{id}', 'RoomController@delete');
+    Route::get('/edit/{id}', 'RoomController@edit');
+    Route::post('/update/{id}', 'RoomController@update');
+});
 
-Route::get('/payment', 'PaymentController@index');
-Route::get('/payment/delete/{id}', 'PaymentController@delete');
-Route::post('/payment/new', 'PaymentController@new');
-
-
-Route::get('/rooms', 'RoomController@index');
-Route::post('/rooms/new', 'RoomController@new');
-Route::get('/rooms/delete/{id}', 'RoomController@delete');
-
-
-Route::get('/customers', 'CustomerController@index');
-Route::post('/customers/new', 'CustomerController@new');
-Route::get('/customers/delete/{id}', 'CustomerController@delete');
+Route::prefix('customers')->group(function(){
+    Route::get('/', 'CustomerController@index');
+    Route::post('/new', 'CustomerController@new');
+    Route::get('/delete/{id}', 'CustomerController@delete');
+    Route::get('/edit/{id}', 'CustomerController@edit');
+    Route::post('/update/{id}', 'CustomerController@update');
+});

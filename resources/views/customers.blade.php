@@ -37,16 +37,17 @@
                 <tbody>
                 @foreach ($customers as $customer)
                 <tr>
-                    <input type="hidden" name="id" id="customer{{$loop->iteration-1}}" value="{{$customer->id}}">
                     <td>{{$customer->id}}</td>
                     <td>{{$customer->name}}</td>
                     <td>{{$customer->address}}</td>
                     <td>{{$customer->phone}}</td>
                     <td>{{$customer->gender}}</td>
                     <td>
-                        <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
-                            <i class="ti-pencil"></i>
-                        </button>
+                        <a href="/customers/edit/{{$customer->id}}">
+                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
+                                <i class="ti-pencil"></i>
+                            </button>
+                        </a>
                         <a href="/customers/delete/{{$customer->id}}">
                             <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" onclick="return confirm ('Hapus {{$customer->name}} Sebagai Customer?')">
                                 <i class="ti-trash"></i>

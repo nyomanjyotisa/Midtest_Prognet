@@ -24,13 +24,13 @@
                     <div class="col-md-3 mb-4 stretch-card transparent">
                         <div class="card card-tale">
                             <div class="p-2">
-                                <img class="card-img-top rounded-lg" src="/rooms_pic/{{$room->picture}}" alt="Card image cap">
+                                <img style="height: 180px; width: auto;" class="card-img-top rounded-lg mx-auto d-block" src="/rooms_pic/{{$room->picture}}" alt="Card image cap">
                             </div>
                             <div class="card-body">
                             <p class="">{{$room->name}}</p>
-                            <p class="">{{$room->room_types->monthly_fee}}</p>
+                            <p class="">Rp{{number_format($room->room_types->monthly_fee)}}/bulan</p>
                             <p>Tipe : {{$room->room_types->name}}</p>
-                            <button type="button" class="btn btn-warning"><i class="ti-pencil"></i>  Edit</button>
+                            <a href="/rooms/edit/{{$room->id}}"><button type="button" class="btn btn-warning"><i class="ti-pencil"></i>  Edit</button></a>
                             <a href="/rooms/delete/{{$room->id}}"><button type="button" class="btn btn-danger" onclick="return confirm ('Hapus {{$room->name}} dari Room?')"><i class="ti-trash"></i>  Delete</button></a>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                             <select name="tipekamar" id="tipekamar" class="form-select dropdown_item_select" required>
                                 <option>Piih Tipe Kamar</option>
                                 @foreach ($roomtype as $roomtype)
-                                <option value="{{$roomtype->id}}">{{$roomtype->name}} Rp.{{$roomtype->monthly_fee}}</option>
+                                <option value="{{$roomtype->id}}">{{$roomtype->name}} Rp{{number_format($roomtype->monthly_fee)}}/bulan</option>
                                 @endforeach
                             </select>					
                         </div>

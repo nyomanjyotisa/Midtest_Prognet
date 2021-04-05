@@ -34,12 +34,14 @@
                     <tr>
                         <td>{{$payment->id}}</td>
                         <td>{{$payment->transaction_id}}</td>
-                        <td>{{$payment->amount}}</td>
+                        <td>Rp{{number_format($payment->amount)}}</td>
                         <td>{{$payment->proof_of_payment}}</td>
                         <td>
-                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
-                                <i class="ti-pencil"></i>
-                            </button>
+                            <a href="/payment/edit/{{$payment->id}}">
+                                <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
+                                    <i class="ti-pencil"></i>
+                                </button>
+                            </a>
                             <a href="/payment/delete/{{$payment->id}}">
                                 <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" onclick="return confirm ('Hapus Paymnet dengan id {{$payment->id}}?')">
                                     <i class="ti-trash"></i>

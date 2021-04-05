@@ -40,12 +40,23 @@
                         <td>{{$transaction->rooms->name}}</td>
                         <td>{{$transaction->start_date}}</td>
                         <td>{{$transaction->duration_month}} Bulan</td>
-                        <td>Rp.{{$transaction->total_fee}}</td>
-                        <td>{{$transaction->payment_status}}</td>
+                        <td>Rp{{number_format($transaction->total_fee)}}</td>
                         <td>
-                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
-                                <i class="ti-pencil"></i>
-                            </button>
+                        @if($transaction->payment_status=='not_paid')    
+                        <span class="badge badge-danger">Not Paid</span>
+                        @elseif($transaction->payment_status=='paid')
+                        <span class="badge badge-success">Paid</span>
+                        @else
+                        <span class="badge badge-warning">Partially Paid</span>
+                        @endif
+                    
+                        </td>
+                        <td>
+                            <a href="/transaction/edit/{{$transaction->id}}">
+                                <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
+                                    <i class="ti-pencil"></i>
+                                </button>
+                            </a>
                             <a href="/transaction/delete/{{$transaction->id}}">
                                 <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" onclick="return confirm ('Hapus Transaksi dengan id {{$transaction->id}}?')">
                                     <i class="ti-trash"></i>

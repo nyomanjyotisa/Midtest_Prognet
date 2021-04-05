@@ -29,4 +29,22 @@ class CustomerController extends Controller
         Customer::where('id', $id)->delete();
         return redirect ('/customers');
     }
+
+    public function edit($id){
+        $customer = Customer::find($id);
+
+        return view('customerEdit',['customer' =>$customer]);
+    }
+
+    public function update(Request $request, $id){
+        $customer = Customer::find($id);
+
+        $customer->name = $request->name;
+        $customer->address = $request->alamat;
+        $customer->phone = $request->phone;
+        $customer->gender = $request->gender;
+        $customer->save();
+
+        return redirect ('/customers');
+    }
 }
