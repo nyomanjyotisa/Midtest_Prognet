@@ -54,4 +54,41 @@
         </div>
         </div>
     </div>
+
+    <!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+        <div class="modal-dialog modal-login">
+            <div class="modal-content">
+                <div class="modal-header">				
+                    <h4 class="modal-title">Add New Payment</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <form action="/payment/new" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="transaction">Pilih Trasaksi</label><br>
+                            <select name="transaction" id="transaction" class="form-select dropdown_item_select" required>
+                                <option>Piih Transaksi</option>
+                                @foreach ($transactions as $transaction)
+                                <option value="{{$transaction->id}}">{{$transaction->id}}</option>
+                                @endforeach
+                            </select>					
+                        </div>
+                        <div class="form-group">
+                            <label for="jumlah">Jumlah Pembayaran</label>
+                            <input type="text" class="form-control" placeholder="jumlah pembayaran" required="required" name="jumlah">
+                        </div>
+                        <div class="form-group">
+                            <label for="file">Bukti Pembayaran</label><br>
+                            <input type="file" name="file" id="form19" accept=".jpeg,.jpg,.png,.gif" onchange="preview_image(event)" required>					
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-block btn-lg" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

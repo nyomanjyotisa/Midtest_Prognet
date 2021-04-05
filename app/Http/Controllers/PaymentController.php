@@ -4,12 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Payment;
+use App\Transaction;
 
 class PaymentController extends Controller
 {
     public function index(){
         $payments = Payment::all();
-        return view('payment', ['payments' => $payments]);
+        $transactions = Transaction::all();
+        return view('payment', ['payments' => $payments, 'transactions' => $transactions]);
+    }
+
+    public function new(Request $request){
+        $payment = new Payment;
+
+        $payment->transaction_id = $request->transaction;
+
+        $file = $request->file('file');
+        $path = 'proof_of_payment';
+        $nama_file = time()."_".$file->getClientOriginalName();
+        $file->move($path,$nama_file);
+
+        $payment->proof_of_payment = $nama_file;
+        $payment->amount = $request->jumlah;
+        $payment->save();
+
+        return redirect ('/payment');
     }
 
     public function delete ($id){
